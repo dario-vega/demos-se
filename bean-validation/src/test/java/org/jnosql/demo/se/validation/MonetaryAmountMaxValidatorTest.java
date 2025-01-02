@@ -96,7 +96,7 @@ class MonetaryAmountMaxValidatorTest {
         Set<ConstraintViolation<MonetaryAmountValidator>> constraintViolations =
                 validator.validate(currency);
 
-        assertTrue(constraintViolations.size() == 1);
+        assertEquals(1, constraintViolations.size());
         assertEquals("{org.javamoney.midas.constraints.monetaryMax}", constraintViolations.iterator().next().getMessageTemplate());
     }
 
@@ -115,7 +115,7 @@ class MonetaryAmountMaxValidatorTest {
                 validator.validate(currency);
         assertTrue(constraintViolations.isEmpty());
     }
-    private class MonetaryAmountValidator {
+    private static class MonetaryAmountValidator {
 
         @MonetaryMax("10.12")
         private MonetaryAmount money;

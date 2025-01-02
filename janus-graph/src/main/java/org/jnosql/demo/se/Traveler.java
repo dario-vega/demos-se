@@ -49,10 +49,9 @@ public class Traveler {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof Traveler)) {
+        if (!(o instanceof Traveler traveler)) {
             return false;
         }
-        Traveler traveler = (Traveler) o;
         return Objects.equals(id, traveler.id);
     }
 
@@ -63,11 +62,9 @@ public class Traveler {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Traveler{");
-        sb.append("id=").append(id);
-        sb.append(", name='").append(name).append('\'');
-        sb.append('}');
-        return sb.toString();
+        return "Traveler{" + "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 
     public static Traveler of(String name) {

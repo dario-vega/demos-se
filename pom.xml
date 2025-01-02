@@ -16,10 +16,10 @@
     <artifactId>mapping-demo-java-se</artifactId>
     <packaging>pom</packaging>
     <name>JNoSQL Demo</name>
-    <version>1.0.4</version>
+    <version>1.1.4</version>
 
     <properties>
-        <jnosql.version>1.0.4</jnosql.version>
+        <jnosql.version>1.1.4</jnosql.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <maven.compile.version>3.5.1</maven.compile.version>
@@ -48,6 +48,7 @@
         <module>mongodb</module>
         <module>mongodb-lite</module>
         <module>mongodb-double</module>
+        <module>mongodb-record</module>
         <module>oracle-nosql</module>
         <module>redis</module>
         <module>couchdb</module>
@@ -132,7 +133,7 @@
                 <plugin>
                     <groupId>org.eclipse.m2e</groupId>
                     <artifactId>lifecycle-mapping</artifactId>
-                    <version>1.0.4</version>
+                    <version>1.1.4</version>
                     <configuration>
                         <lifecycleMappingMetadata>
                             <pluginExecutions>

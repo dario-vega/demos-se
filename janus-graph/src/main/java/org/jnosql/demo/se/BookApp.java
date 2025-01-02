@@ -12,11 +12,9 @@ package org.jnosql.demo.se;
 
 import jakarta.enterprise.inject.se.SeContainer;
 import jakarta.enterprise.inject.se.SeContainerInitializer;
-import org.eclipse.jnosql.mapping.graph.GraphTemplate;
+import org.eclipse.jnosql.databases.tinkerpop.mapping.GraphTemplate;
 
 import java.util.List;
-
-import static java.util.stream.Collectors.toList;
 
 public final class BookApp {
 
@@ -61,13 +59,13 @@ public final class BookApp {
                     .has("name", "Software")
                     .in("is").hasLabel("Category").<Category>result()
                     .map(Category::getName)
-                    .collect(toList());
+                    .toList();
 
             List<String> softwareBooks = graph.traversalVertex().hasLabel("Category")
                     .has("name", "Software")
                     .in("is").hasLabel("Book").<Book>result()
                     .map(Book::getName)
-                    .collect(toList());
+                    .toList();
 
             List<String> sofwareNoSQLBooks = graph.traversalVertex().hasLabel("Category")
                     .has("name", "Software")
@@ -75,7 +73,7 @@ public final class BookApp {
                     .has("name", "NoSQL")
                     .in("is").<Book>result()
                     .map(Book::getName)
-                    .collect(toList());
+                    .toList();
 
 
             System.out.println("The software categories: " + softwareCategories);

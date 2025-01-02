@@ -46,10 +46,9 @@ public class Location {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof Location)) {
+        if (!(o instanceof Location traveler)) {
             return false;
         }
-        Location traveler = (Location) o;
         return Objects.equals(id, traveler.id);
     }
 
@@ -60,11 +59,9 @@ public class Location {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Traveler{");
-        sb.append("id=").append(id);
-        sb.append(", name='").append(name).append('\'');
-        sb.append('}');
-        return sb.toString();
+        return "Traveler{" + "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 
 }

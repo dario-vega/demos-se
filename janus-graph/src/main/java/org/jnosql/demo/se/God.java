@@ -51,10 +51,9 @@ public class God {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof God)) {
+        if (!(o instanceof God traveler)) {
             return false;
         }
-        God traveler = (God) o;
         return Objects.equals(id, traveler.id);
     }
 
@@ -65,11 +64,9 @@ public class God {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("God{");
-        sb.append("id=").append(id);
-        sb.append(", name='").append(name).append('\'');
-        sb.append(", age=").append(age);
-        sb.append('}');
-        return sb.toString();
+        return "God{" + "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                '}';
     }
 }

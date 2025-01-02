@@ -15,11 +15,10 @@ package org.jnosql.demo.se;
 import jakarta.enterprise.inject.se.SeContainer;
 import jakarta.enterprise.inject.se.SeContainerInitializer;
 import org.apache.tinkerpop.gremlin.structure.Graph;
-import org.eclipse.jnosql.mapping.graph.GraphTemplate;
+import org.eclipse.jnosql.databases.tinkerpop.mapping.GraphTemplate;
 
 import java.util.List;
 
-import static java.util.stream.Collectors.toList;
 import static org.apache.tinkerpop.gremlin.process.traversal.P.between;
 import static org.apache.tinkerpop.gremlin.process.traversal.P.gte;
 import static org.jnosql.demo.se.Person.builder;
@@ -70,14 +69,14 @@ public final class MarketingApp {
 
             List<Person> developers = graph.traversalVertex()
                     .has("occupation", "Developer")
-                    .<Person>result().collect(toList());
+                    .<Person>result().toList();
 
             List<Person> peopleWhoDeveloperKnows = graph.traversalVertex()
                     .has("salary", gte(3_000D))
                     .has("age", between(20, 25))
                     .has("occupation", "Developer")
                     .out("knows")
-                    .<Person>result().collect(toList());
+                    .<Person>result().toList();
 
             List<Person> both = graph.traversalVertex()
                     .has("salary", gte(3_000D))
@@ -87,7 +86,7 @@ public final class MarketingApp {
                     .bothV()
                     .<Person>result()
                     .distinct()
-                    .collect(toList());
+                    .toList();
 
             List<Person> couple = graph.traversalVertex()
                     .has("salary", gte(3_000D))
@@ -98,7 +97,7 @@ public final class MarketingApp {
                     .bothV()
                     .<Person>result()
                     .distinct()
-                    .collect(toList());
+                    .toList();
 
             System.out.println("Developers has salary greater than 3000 and age between 20 and 25: " + developers);
             System.out.println("Person who the Developers target know: " + peopleWhoDeveloperKnows);

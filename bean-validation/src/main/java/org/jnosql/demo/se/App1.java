@@ -21,7 +21,7 @@ import org.javamoney.moneta.Money;
 
 import javax.money.CurrencyUnit;
 import javax.money.Monetary;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.Locale;
 
 public class App1 {
@@ -46,13 +46,13 @@ public class App1 {
                     .build();
 
             Driver michael = Driver.builder().withAge(35)
-                    .withCars(Arrays.asList(ferrari))
+                    .withCars(Collections.singletonList(ferrari))
                     .withEmail("michael@ferrari.com")
                     .withLicense(true)
                     .withName("Michael Schumacher").build();
 
             Driver rubens = Driver.builder().withAge(25)
-                    .withCars(Arrays.asList(mustang))
+                    .withCars(Collections.singletonList(mustang))
                     .withEmail("rubens@mustang.com")
                     .withLicense(true)
                     .withName("Rubens Barrichello").build();

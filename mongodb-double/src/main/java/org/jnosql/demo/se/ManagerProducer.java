@@ -14,13 +14,13 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.inject.Disposes;
 import jakarta.enterprise.inject.Produces;
 import org.eclipse.jnosql.communication.Settings;
-import org.eclipse.jnosql.communication.document.DocumentConfiguration;
-import org.eclipse.jnosql.communication.document.DocumentManager;
-import org.eclipse.jnosql.communication.document.DocumentManagerFactory;
+import org.eclipse.jnosql.communication.semistructured.DatabaseConfiguration;
+import org.eclipse.jnosql.communication.semistructured.DatabaseManager;
+import org.eclipse.jnosql.communication.semistructured.DatabaseManagerFactory;
 import org.eclipse.jnosql.databases.mongodb.communication.MongoDBDocumentConfiguration;
 import org.eclipse.jnosql.mapping.Database;
 import org.eclipse.jnosql.mapping.DatabaseType;
-import org.eclipse.jnosql.mapping.config.MicroProfileSettings;
+import org.eclipse.jnosql.mapping.core.config.MicroProfileSettings;
 import org.eclipse.microprofile.config.Config;
 import org.eclipse.microprofile.config.ConfigProvider;
 
@@ -36,17 +36,16 @@ public class ManagerProducer {
     @ApplicationScoped
     @Produces
     @Database(provider = "romain", value = DatabaseType.DOCUMENT)
-    public DocumentManager getRomain() {
+    public DatabaseManager getRomain() {
         LOGGER.info("Creating DocumentManager to romain database");
         Config config = ConfigProvider.getConfig();
-        DocumentConfiguration configuration = new MongoDBDocumentConfiguration();
+        DatabaseConfiguration configuration = new MongoDBDocumentConfiguration();
         Settings settings = MicroProfileSettings.INSTANCE;
-        DocumentManagerFactory factory = configuration.apply(settings);
-        DocumentManager manager = factory.apply(config.getValue(DATABASE, String.class));
-        return manager;
+        DatabaseManagerFactory factory = configuration.apply(settings);
+        return factory.apply(config.getValue(DATABASE, String.class));
     }
 
-    public void close(@Disposes @Database(provider = "romain", value = DatabaseType.DOCUMENT) DocumentManager manager) {
+    public void close(@Disposes @Database(provider = "romain", value = DatabaseType.DOCUMENT) DatabaseManager manager) {
         LOGGER.info("Closing DocumentManager to romain database");
         manager.close();
     }

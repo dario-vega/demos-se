@@ -1,12 +1,9 @@
-package org.jnosql.demo.se;
+package org.jnosql.demo.se.car;
 
 
-import jakarta.data.Sort;
-import jakarta.data.page.Page;
-import jakarta.data.page.Pageable;
 import jakarta.enterprise.inject.se.SeContainer;
 import jakarta.enterprise.inject.se.SeContainerInitializer;
-import jakarta.nosql.keyvalue.KeyValueTemplate;
+import org.eclipse.jnosql.mapping.keyvalue.KeyValueTemplate;
 import net.datafaker.Faker;
 
 public class App2 {

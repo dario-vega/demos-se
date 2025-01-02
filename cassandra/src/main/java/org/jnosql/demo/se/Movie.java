@@ -14,7 +14,6 @@ package org.jnosql.demo.se;
 
 import jakarta.nosql.Column;
 import jakarta.nosql.Entity;
-import org.eclipse.jnosql.databases.cassandra.mapping.UDT;
 
 import java.util.Objects;
 
@@ -27,8 +26,7 @@ public class Movie {
     @Column
     private Integer age;
 
-    @Column
-    @UDT("director")
+    @Column(udt = "director")
     private Director director;
 
     public String getName() {
@@ -58,8 +56,7 @@ public class Movie {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Movie)) return false;
-        Movie movie = (Movie) o;
+        if (!(o instanceof Movie movie)) return false;
         return Objects.equals(name, movie.name);
     }
 

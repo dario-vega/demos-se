@@ -77,10 +77,9 @@ public class Hero implements Serializable {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof Hero)) {
+        if (!(o instanceof Hero hero)) {
             return false;
         }
-        Hero hero = (Hero) o;
         return Objects.equals(name, hero.name);
     }
 
@@ -91,12 +90,10 @@ public class Hero implements Serializable {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Hero{");
-        sb.append("name='").append(name).append('\'');
-        sb.append(", realName='").append(realName).append('\'');
-        sb.append(", age=").append(age);
-        sb.append(", powers=").append(powers);
-        sb.append('}');
-        return sb.toString();
+        return "Hero{" + "name='" + name + '\'' +
+                ", realName='" + realName + '\'' +
+                ", age=" + age +
+                ", powers=" + powers +
+                '}';
     }
 }

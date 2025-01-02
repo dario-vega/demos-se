@@ -14,7 +14,7 @@ package org.jnosql.demo.se;
 
 import jakarta.enterprise.inject.se.SeContainer;
 import jakarta.enterprise.inject.se.SeContainerInitializer;
-import jakarta.nosql.document.DocumentTemplate;
+import org.eclipse.jnosql.mapping.document.DocumentTemplate;
 
 import java.util.Collections;
 import java.util.List;
@@ -31,7 +31,7 @@ public class App {
 
             template.insert(ironMan);
 
-            List<Hero> heroes = template.<Hero>select(Hero.class)
+            List<Hero> heroes = template.select(Hero.class)
                     .where("id").eq("iron_man").result();
             System.out.println(heroes);
 

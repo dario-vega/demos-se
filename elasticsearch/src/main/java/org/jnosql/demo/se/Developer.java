@@ -73,10 +73,9 @@ public class Developer {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Developer)) {
+        if (!(o instanceof Developer developer)) {
             return false;
         }
-        Developer developer = (Developer) o;
         return Objects.equals(id, developer.id);
     }
 
@@ -87,14 +86,12 @@ public class Developer {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Developer{");
-        sb.append("id=").append(id);
-        sb.append(", name='").append(name).append('\'');
-        sb.append(", phones=").append(phones);
-        sb.append(", languages=").append(languages);
-        sb.append(", address=").append(address);
-        sb.append('}');
-        return sb.toString();
+        return "Developer{" + "id=" + id +
+                ", name='" + name + '\'' +
+                ", phones=" + phones +
+                ", languages=" + languages +
+                ", address=" + address +
+                '}';
     }
 
     public static DeveloperBuilder builder() {

@@ -8,38 +8,40 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-
 package org.jnosql.demo.se;
 
 import jakarta.enterprise.inject.se.SeContainer;
 import jakarta.enterprise.inject.se.SeContainerInitializer;
-import jakarta.nosql.document.DocumentTemplate;
 import net.datafaker.Faker;
+import org.eclipse.jnosql.mapping.DatabaseQualifier;
 
+import java.util.List;
 
-public class App {
-
+public class TaskApp {
 
     public static void main(String[] args) {
+
         Faker faker = new Faker();
         try (SeContainer container = SeContainerInitializer.newInstance().initialize()) {
-            DocumentTemplate template = container.select(DocumentTemplate.class).get();
-            for (int index = 0; index < 10; index++) {
-                Car car = Car.of(faker);
-                template.insert(car);
-            }
 
-            template.select(Car.class).stream().toList().forEach(System.out::println);
-            template.select(Car.class).where("transmission").eq("Automatic").orderBy("model").desc()
-                    .stream().forEach(System.out::println);
+            var tasks = container.select(Tasks.class, DatabaseQualifier.ofDocument()).get();
 
-            template.select(Car.class).where("transmission").eq("CVT").orderBy("make").desc()
-                    .stream().forEach(System.out::println);
+            tasks.save(Task.newEnabledTask("task 1"));
+            tasks.save(Task.newEnabledTask("task 2"));
+            tasks.save(Task.newEnabledTask("task 3"));
+            tasks.save(Task.newDisabledTask("task 4"));
 
+            List<Task> enabledTasks = tasks.listAllEnabled();
+            System.out.println("Enabled tasks:");
+            enabledTasks.forEach(System.out::println);
+
+            System.out.println();
+
+            List<Task> disabledTasks = tasks.listAllDisabled();
+            System.out.println("Disabled tasks:");
+            disabledTasks.forEach(System.out::println);
+
+            tasks.findAll().forEach(tasks::remove);
         }
-        System.exit(0);
-    }
-
-    private App() {
     }
 }

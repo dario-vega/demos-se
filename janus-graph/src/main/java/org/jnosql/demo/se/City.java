@@ -48,10 +48,9 @@ public class City {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof City)) {
+        if (!(o instanceof City city)) {
             return false;
         }
-        City city = (City) o;
         return Objects.equals(id, city.id);
     }
 
@@ -62,11 +61,9 @@ public class City {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("City{");
-        sb.append("id=").append(id);
-        sb.append(", name='").append(name).append('\'');
-        sb.append('}');
-        return sb.toString();
+        return "City{" + "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 
     public static City of(String name) {

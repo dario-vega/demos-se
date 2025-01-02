@@ -44,10 +44,9 @@ public class Monster {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof Monster)) {
+        if (!(o instanceof Monster traveler)) {
             return false;
         }
-        Monster traveler = (Monster) o;
         return Objects.equals(id, traveler.id);
     }
 
@@ -58,10 +57,8 @@ public class Monster {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Monster{");
-        sb.append("id=").append(id);
-        sb.append(", name='").append(name).append('\'');
-        sb.append('}');
-        return sb.toString();
+        return "Monster{" + "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

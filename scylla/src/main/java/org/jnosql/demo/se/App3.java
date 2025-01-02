@@ -19,7 +19,6 @@ import org.eclipse.jnosql.databases.cassandra.mapping.CassandraTemplate;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class App3 {
 
@@ -32,7 +31,7 @@ public class App3 {
             Person saved = cassandraTemplate.save(person, ConsistencyLevel.ONE);
             System.out.println("Person saved" + saved);
             List<Person> people = cassandraTemplate.<Person>cql("select * from developers.Person where id = 1")
-                    .collect(Collectors.toList());
+                    .toList();
             System.out.println("Entity found: " + people);
 
         }

@@ -61,10 +61,8 @@ public class Villain implements Serializable {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Villain{");
-        sb.append("id='").append(id).append('\'');
-        sb.append(", name='").append(name).append('\'');
-        sb.append('}');
-        return sb.toString();
+        return "Villain{" + "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

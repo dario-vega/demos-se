@@ -45,8 +45,7 @@ public class Director {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Director)) return false;
-        Director director = (Director) o;
+        if (!(o instanceof Director director)) return false;
         return Objects.equals(name, director.name) &&
                 Objects.equals(movies, director.movies);
     }
@@ -58,11 +57,9 @@ public class Director {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Director{");
-        sb.append("name='").append(name).append('\'');
-        sb.append(", movies=").append(movies);
-        sb.append('}');
-        return sb.toString();
+        return "Director{" + "name='" + name + '\'' +
+                ", movies=" + movies +
+                '}';
     }
 
     public static DirectorBuilder builder() {
@@ -73,7 +70,7 @@ public class Director {
 
         private String name;
 
-        private Set<String> movies = new HashSet<>();
+        private final Set<String> movies = new HashSet<>();
 
         public DirectorBuilder withName(String name) {
             this.name = name;

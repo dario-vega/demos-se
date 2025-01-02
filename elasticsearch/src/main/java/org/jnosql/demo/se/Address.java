@@ -13,7 +13,8 @@ package org.jnosql.demo.se;
 
 
 import jakarta.nosql.Column;
-import org.eclipse.jnosql.mapping.Embeddable;
+
+import jakarta.nosql.Embeddable;
 
 import java.util.Objects;
 
@@ -66,8 +67,7 @@ public class Address {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Address)) return false;
-        Address address = (Address) o;
+        if (!(o instanceof Address address)) return false;
         return Objects.equals(street, address.street) &&
                 Objects.equals(city, address.city) &&
                 Objects.equals(number, address.number);
@@ -80,12 +80,10 @@ public class Address {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Address{");
-        sb.append("street='").append(street).append('\'');
-        sb.append(", city='").append(city).append('\'');
-        sb.append(", number=").append(number);
-        sb.append('}');
-        return sb.toString();
+        return "Address{" + "street='" + street + '\'' +
+                ", city='" + city + '\'' +
+                ", number=" + number +
+                '}';
     }
 
     public static AddressBuilder builder() {
